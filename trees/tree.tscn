@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqymv7ih1ln2m"]
+
+[ext_resource type="Texture2D" uid="uid://b7rhtttevhxtj" path="res://characters/ground_shadow.png" id="1_i6hv5"]
+[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://trees/pine_tree.png" id="2_5cqo0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5ll8"]
+radius = 41.0
+
+[node name="Tree" type="StaticBody2D"]
+
+[node name="GroundShadow" type="Sprite2D" parent="."]
+modulate = Color(0.351563, 0.351563, 0.351563, 1)
+position = Vector2(0, 31)
+texture = ExtResource("1_i6hv5")
+
+[node name="PineTree" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("2_5cqo0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28)
+shape = SubResource("CircleShape2D_j5ll8")
