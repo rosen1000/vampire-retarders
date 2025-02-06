@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b354nxarlbinq"]
+
+[ext_resource type="Script" path="res://characters/enemy/spawner.gd" id="1_shxb8"]
+
+[sub_resource type="Curve2D" id="Curve2D_3264x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -429, -273, 0, 0, 0, 0, 911.876, -275.624, 0, 0, 0, 0, 906.983, 535.288, 0, 0, 0, 0, -435.846, 532.417, 0, 0, 0, 0, -431, -273)
+}
+point_count = 5
+
+[node name="Spawner" type="Path2D"]
+position = Vector2(-433.305, -219.07)
+scale = Vector2(1.8394, 1.74125)
+curve = SubResource("Curve2D_3264x")
+script = ExtResource("1_shxb8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-429, -273)
+rotation = -0.00195672
