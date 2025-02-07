@@ -1,8 +1,12 @@
 extends Node2D
 
 var enemy_scene = preload("res://characters/enemy/enemy.tscn")
-@onready var spawner = $Player/Spawner
+@onready var spawner = %Spawner
+var current_wave = 0
 
 func _ready():
-	for i in range(10):
-		spawner.spawn()
+	spawner.start()
+
+func _on_player_death() -> void:
+	%GameOver.visible = true
+	get_tree().paused = true

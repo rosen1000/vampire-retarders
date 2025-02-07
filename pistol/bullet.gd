@@ -2,6 +2,8 @@ extends Area2D
 
 @export var speed = 300
 @export var max_range = 1200
+@export var damage = 30
+@export var damage_fluctuation = .2
 var traveled = 0
 
 func _physics_process(delta: float) -> void:
@@ -14,5 +16,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
-		body.take_damage(10 + randf_range(-2, 2))
+		body.take_damage(damage + randf_range(-damage * damage_fluctuation, damage * damage_fluctuation))
 	queue_free()

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal health_depleted
+signal death
 
 @export var max_health = 100.0
 var health = max_health
@@ -38,6 +38,6 @@ func _physics_process(delta: float) -> void:
 	if touching_enemies.size() > 0:
 		health -= touching_enemies.size() * damage_per_enemy * delta
 		if health <= 0:
-			health_depleted.emit()
+			death.emit()
 	$HealthBar.value = health
 	#endregion

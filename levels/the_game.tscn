@@ -1,27 +1,72 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtva2vamt0bdm"]
+[gd_scene load_steps=5 format=3 uid="uid://dtva2vamt0bdm"]
 
 [ext_resource type="PackedScene" uid="uid://bsnjb3hub3idc" path="res://characters/player/player.tscn" id="1_23ha6"]
 [ext_resource type="Script" path="res://levels/the_game.gd" id="1_vpa7k"]
 [ext_resource type="PackedScene" uid="uid://cqymv7ih1ln2m" path="res://trees/tree.tscn" id="2_nwit1"]
-[ext_resource type="PackedScene" uid="uid://bm77emil52vyu" path="res://characters/enemy/enemy.tscn" id="3_cyp2m"]
 [ext_resource type="PackedScene" uid="uid://b354nxarlbinq" path="res://characters/enemy/spawner.tscn" id="3_n2wxn"]
 
 [node name="TheGame" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_vpa7k")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
 layer = -10
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Background"]
 offset_right = 1952.0
 offset_bottom = 1120.0
 color = Color(0.076813, 0.323339, 0.064906, 1)
+
+[node name="Foreground" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="WaveCounter" type="Label" parent="Foreground"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 32.0
+offset_right = 20.0
+offset_bottom = 55.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Wave: 1"
+
+[node name="GameOver" type="ColorRect" parent="Foreground"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.82, 0.82, 0.82, 0.686275)
+
+[node name="Label" type="Label" parent="Foreground/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "Game Over"
 
 [node name="Player" parent="." instance=ExtResource("1_23ha6")]
 position = Vector2(736, 547)
 
 [node name="Spawner" parent="Player" instance=ExtResource("3_n2wxn")]
+unique_name_in_owner = true
 
 [node name="Tree" parent="." instance=ExtResource("2_nwit1")]
 position = Vector2(366, 295)
@@ -38,18 +83,4 @@ position = Vector2(1525, 840)
 [node name="Tree5" parent="." instance=ExtResource("2_nwit1")]
 position = Vector2(547, 784)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_cyp2m")]
-position = Vector2(1154, 794)
-target = NodePath("../Player")
-
-[node name="Enemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_cyp2m")]
-position = Vector2(392, 815)
-target = NodePath("../Player")
-
-[node name="Enemy3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_cyp2m")]
-position = Vector2(237, 544)
-target = NodePath("../Player")
-
-[node name="Enemy4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_cyp2m")]
-position = Vector2(804, 185)
-target = NodePath("../Player")
+[connection signal="death" from="Player" to="." method="_on_player_death"]

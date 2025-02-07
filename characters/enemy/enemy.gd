@@ -1,5 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
+signal death
+
 @export var health = 100.0
 @export var speed = 100
 @export var target: CharacterBody2D
@@ -23,7 +25,9 @@ func take_damage(dmg: float):
 	$Slime.play_hurt()
 	if health <= 0:
 		var smoke = smoke_scene.instantiate() as Node2D
-		# Smoke not getting deleted with the enemy
 		smoke.global_position = global_position
+		smoke.top_level = true
+		# Smoke not getting deleted with the enemy
 		get_parent().add_child(smoke)
+		death.emit()
 		queue_free()
