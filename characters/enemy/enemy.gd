@@ -3,7 +3,8 @@ class_name Enemy extends CharacterBody2D
 signal death
 
 @export var health = 100.0
-@export var speed = 100
+@export var speed = 250
+@export var damage = 15
 @export var target: CharacterBody2D
 
 func _ready():

@@ -1,7 +1,7 @@
 extends Area2D
 
-@export var speed = 300
-@export var max_range = 1200
+@export var speed = 900
+@export var max_range = 1600
 @export var damage = 30
 @export var damage_fluctuation = .2
 var traveled = 0

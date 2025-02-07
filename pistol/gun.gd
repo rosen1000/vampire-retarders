@@ -8,6 +8,14 @@ func _physics_process(_delta: float) -> void:
 		var target = found_enemies[0]
 		look_at(target.global_position)
 
+	#region Flip gun
+	var direction = Vector2.RIGHT.rotated(global_rotation)
+	if direction.x < 0:
+		$Pivot/Pistol.scale.y = -1
+	else:
+		$Pivot/Pistol.scale.y = 1
+	#endregion
+
 func shoot():
 	var bullet = bullet_scene.instantiate() as Area2D
 	bullet.global_position = %BulletMarker.global_position
