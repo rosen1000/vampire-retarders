@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready():
+	%AnimationPlayer.play("idle")
+
 
 func play_idle_animation():
 	%AnimationPlayer.play("idle")

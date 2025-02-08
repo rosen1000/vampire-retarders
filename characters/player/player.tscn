@@ -37,6 +37,8 @@ position = Vector2(0, -19)
 shape = SubResource("CircleShape2D_gqad6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="Gun" parent="." instance=ExtResource("3_w5v8n")]
 position = Vector2(0, -52)
@@ -51,6 +53,7 @@ shape = SubResource("CircleShape2D_1rgvc")
 debug_color = Color(0.879276, 0.000373687, 0.825085, 0.42)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -77.0
 offset_top = -137.0
 offset_right = 78.0
