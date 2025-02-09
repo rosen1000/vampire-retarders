@@ -6,6 +6,7 @@ signal death
 @export var speed = 250
 @export var damage = 15
 @export var target: CharacterBody2D
+var coin_scene = preload("res://items/coin.tscn")
 
 func _ready():
 	$Slime.play_walk()
@@ -31,4 +32,8 @@ func take_damage(dmg: float):
 		# Smoke not getting deleted with the enemy
 		get_parent().add_child(smoke)
 		death.emit()
+		var coin = coin_scene.instantiate() as Area2D
+		coin.global_position = global_position
+		coin.top_level = true
+		get_parent().call_deferred("add_child", coin)
 		queue_free()

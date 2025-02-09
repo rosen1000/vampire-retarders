@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsnjb3hub3idc"]
+[gd_scene load_steps=9 format=3 uid="uid://bsnjb3hub3idc"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_6cdqw"]
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="2_ru4b8"]
@@ -9,6 +9,9 @@ radius = 25.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1rgvc"]
 radius = 39.0128
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqinr"]
+radius = 224.878
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_soxws"]
 bg_color = Color(0.6, 0.6, 0.6, 0.709804)
@@ -25,16 +28,12 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 5
+collision_mask = 13
 motion_mode = 1
 platform_floor_layers = 0
 script = ExtResource("1_6cdqw")
 
 [node name="HappyBoo" parent="." instance=ExtResource("2_ru4b8")]
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -19)
-shape = SubResource("CircleShape2D_gqad6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -42,6 +41,10 @@ position_smoothing_speed = 10.0
 
 [node name="Gun" parent="." instance=ExtResource("3_w5v8n")]
 position = Vector2(0, -52)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("CircleShape2D_gqad6")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -51,6 +54,14 @@ collision_mask = 2
 position = Vector2(0, -19)
 shape = SubResource("CircleShape2D_1rgvc")
 debug_color = Color(0.879276, 0.000373687, 0.825085, 0.42)
+
+[node name="PickupRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange"]
+position = Vector2(0, -19)
+shape = SubResource("CircleShape2D_cqinr")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false
@@ -62,3 +73,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_soxws")
 theme_override_styles/fill = SubResource("StyleBoxFlat_r312s")
 value = 100.0
 show_percentage = false
+
+[connection signal="area_entered" from="PickupRange" to="." method="_on_pickup_range_area_entered"]

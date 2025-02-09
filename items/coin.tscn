@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbxtn6t2apmus"]
+
+[ext_resource type="Script" path="res://items/coin.gd" id="1_qdyrt"]
+[ext_resource type="Texture2D" uid="uid://p60y102tohdv" path="res://items/coin.svg" id="1_vo8gk"]
+
+[sub_resource type="Animation" id="Animation_pfmi0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ax0pg"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(10, -0.25, 0, 0.25, 0, -10, -0.25, 0, 0.25, 0, 10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4nljr"]
+_data = {
+"RESET": SubResource("Animation_pfmi0"),
+"float": SubResource("Animation_ax0pg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7icw"]
+size = Vector2(186, 292)
+
+[node name="Coin" type="Area2D"]
+z_index = -2
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_qdyrt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4nljr")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_vo8gk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_c7icw")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

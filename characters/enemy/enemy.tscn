@@ -28,9 +28,10 @@ platform_floor_layers = 0
 script = ExtResource("1_jan3h")
 
 [node name="Slime" parent="." instance=ExtResource("2_dmtxy")]
+position = Vector2(0, 27)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -27)
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_x625u")
 
 [node name="HealthBar" type="ProgressBar" parent="."]

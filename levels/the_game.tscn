@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtva2vamt0bdm"]
+[gd_scene load_steps=6 format=3 uid="uid://dtva2vamt0bdm"]
 
 [ext_resource type="PackedScene" uid="uid://bsnjb3hub3idc" path="res://characters/player/player.tscn" id="1_23ha6"]
 [ext_resource type="Script" path="res://levels/the_game.gd" id="1_vpa7k"]
 [ext_resource type="PackedScene" uid="uid://cqymv7ih1ln2m" path="res://trees/tree.tscn" id="2_nwit1"]
+[ext_resource type="Texture2D" uid="uid://p60y102tohdv" path="res://items/coin.svg" id="2_vjgp1"]
 [ext_resource type="PackedScene" uid="uid://b354nxarlbinq" path="res://characters/enemy/spawner.tscn" id="3_n2wxn"]
 
 [node name="TheGame" type="Node2D"]
@@ -61,6 +62,20 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 80
 text = "Game Over"
+
+[node name="Coin" type="Sprite2D" parent="Foreground"]
+position = Vector2(28.3438, 37.2623)
+scale = Vector2(0.149249, 0.149249)
+texture = ExtResource("2_vjgp1")
+
+[node name="CoinCount" type="Label" parent="Foreground"]
+unique_name_in_owner = true
+offset_left = 49.0
+offset_top = 21.0
+offset_right = 89.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 20
+text = "0"
 
 [node name="Player" parent="." instance=ExtResource("1_23ha6")]
 position = Vector2(736, 547)

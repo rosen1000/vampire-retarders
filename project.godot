@@ -15,6 +15,10 @@ run/main_scene="res://levels/the_game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
+[autoload]
+
+Inventory="*res://inventory.gd"
+
 [display]
 
 window/size/viewport_width=1920
@@ -53,7 +57,6 @@ shoot={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
-3d_physics/layer_2="player"
 2d_physics/layer_3="Enviroment"
 2d_physics/layer_4="Pickables"
 
